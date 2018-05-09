@@ -95,7 +95,7 @@ public class GlobeSortServer {
             }
             IntArray response = responseBuilder.build();
             long sortTime = System.currentTimeMillis()-startSortTime;
-            System.out.println("(Server-Side) GlobeSort took " + sortTime-startSortTime + " ms");
+            System.out.println("(Server-Side) GlobeSort took " + sortTime + " ms");
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }

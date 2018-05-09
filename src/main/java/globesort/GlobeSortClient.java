@@ -43,13 +43,17 @@ public class GlobeSortClient {
         System.out.println("Pinging " + serverStr + "...");
         long startTime = System.currentTimeMillis();
         serverStub.ping(Empty.newBuilder().build());
-        System.out.println("Round-trip pinging took: " + System.currentTimeMillis()-startTime + " ms");
+        System.out.println("Round-trip pinging took: " + (System.currentTimeMillis()-startTime) + " ms");
         System.out.println("Ping successful.");
 
         System.out.println("Requesting server to sort array");
         IntArray request = IntArray.newBuilder().addAllValues(Arrays.asList(values)).build();
         IntArray response = serverStub.sortIntegers(request);
-        System.out.println("Application Throughput: " ((long)values.length/System.currentTimeMillis()*1000) " values/sec");
+        long num = ((long)values.length);
+        long appTime = (System.currentTimeMillis()-startInvTime);
+        long finTime = num/appTime*1000;
+        System.out.println("Total Invocation Time: " + appTime + " ms");
+        System.out.println("Application Throughput: " + finTime + " values/sec");
         System.out.println("Sorted array");
     }
 
